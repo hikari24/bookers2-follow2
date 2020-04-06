@@ -13,19 +13,19 @@
 		</tr>
 		<tr>
 			<th>follows</th>
-			<th><% @user ||= current_user %>
-  				<a href="<%= following_user_path(@user) %>">
+			<th><% user ||= current_user %>
+  				<a href="<%= following_user_path(user) %>">
    					<strong id="following" class="stat">
-      					<%= @user.followings.count %>
+      					<%= user.followings.count %>
     				</strong></a>
     		</th>
     	</tr>
     	<tr>
     		<th>followers</th>
-    		<th><% @user ||= current_user %>
- 				<a href="<%= followers_user_path(@user) %>">
+    		<th><% user ||= current_user %>
+ 				<a href="<%= followers_user_path(user) %>">
     				<strong id="followers" class="stat">
-      					<%= @user.followers.count %>
+      					<%= user.followers.count %>
     				</strong></a>
     		</th>
 		</tr>
@@ -33,14 +33,14 @@
 
 <!-- #現在ログインしているユーザーのプロフィールには、フォロー、フォロー解除のボタンがでないようになる
  --> 
- <% unless current_user?(@user) %>
+ <% unless current_user?(user) %>
   	<div id="follow_form">
-  		<% if current_user.following?(@user) %>
- 			  <%= render 'users/unfollow' %>
+  		<% if current_user.following?(user) %>
+ 			    <%= render 'users/unfollow', user: user %>
   		<% else %>
-   			<%= render 'users/follow' %>
+   			  <%= render 'users/follow', user: user %>
   		<% end %>
-  </div>
+    </div>
 <% end %> 
 
 
